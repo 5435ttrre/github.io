@@ -1,991 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advance MG ALGO | Advanced Trading System</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Advance MG ALGO | Professional Trading System</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&display=swap" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root {
-    --navy: #0A1A3A;
-    --navy-dark: #08122E;
-    --navy-light: #1A2C50;
+    --bg: #0A1A3A;
+    --card: rgba(10,26,58,0.85);
     --accent: #4A6FFF;
     --accent-light: #6B8AFF;
-    --accent-grad: linear-gradient(135deg, #4A6FFF 0%, #6B8AFF 100%);
-    --gold: #FFD166;
-    --text: #FFFFFF;
-    --text-light: #CBD5FF;
-    --text-muted: #8A9BCA;
-    --border: rgba(74, 111, 255, 0.2);
-    --success: #00D4AA;
-    --shadow: 0 25px 70px rgba(0, 10, 60, 0.4);
-    --glow: 0 0 50px rgba(74, 111, 255, 0.25);
+    --gradient: linear-gradient(135deg, #4A6FFF, #6B8AFF);
+    --text: #ffffff;
+    --muted: #9BA9D9;
+    --border: rgba(74,111,255,.25);
+    --shadow: 0 25px 70px rgba(0,0,0,.45);
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: var(--navy);
+    background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
-    line-height: 1.6;
-    position: relative;
-    overflow-x: hidden;
-    padding-bottom: 120px; /* Space for bottom contact button */
+    padding-bottom: 120px;
 }
 
-/* Background Effects */
-.background-effects {
+/* Background */
+.bg-effects {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: -1;
-    overflow: hidden;
+    background:
+        radial-gradient(circle at top right, rgba(74,111,255,.18), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(74,111,255,.12), transparent 40%);
 }
 
-.grid-pattern {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(74, 111, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(74, 111, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.3;
-}
-
-.floating-orb {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(74, 111, 255, 0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    animation: orbFloat 20s infinite alternate ease-in-out;
-}
-
-.floating-orb:nth-child(1) {
-    top: -200px;
-    right: -200px;
-}
-
-.floating-orb:nth-child(2) {
-    bottom: -200px;
-    left: -200px;
-    animation-delay: -10s;
-}
-
-@keyframes orbFloat {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(50px, 50px) scale(1.1); }
-}
-
-/* Main Container */
+/* Layout */
 .container {
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
+    max-width: 620px;
+    margin: auto;
 }
 
 /* Card */
-.advanced-card {
-    background: rgba(10, 26, 58, 0.85);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 45px 35px;
-    border: 1px solid rgba(74, 111, 255, 0.3);
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        var(--shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
+.card {
+    background: var(--card);
+    backdrop-filter: blur(18px);
+    border-radius: 26px;
+    padding: 40px 32px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 /* Header */
-.premium-header {
+.header {
     text-align: center;
-    margin-bottom: 35px;
-    position: relative;
-}
-
-.logo-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 15px;
-}
-
-.logo-glow {
-    position: absolute;
-    width: 120%;
-    height: 120%;
-    background: var(--accent-grad);
-    border-radius: 20px;
-    filter: blur(20px);
-    opacity: 0.3;
-    top: -10%;
-    left: -10%;
-    z-index: -1;
+    margin-bottom: 30px;
 }
 
 .logo {
     font-family: 'Manrope', sans-serif;
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--text) 0%, var(--text-light) 100%);
+    background: var(--gradient);
     -webkit-background-clip: text;
-    background-clip: text;
     color: transparent;
-    letter-spacing: -0.5px;
-    position: relative;
-}
-
-.logo::after {
-    content: 'ALGO';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: var(--accent-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    z-index: -1;
-    animation: logoShimmer 3s infinite alternate;
-}
-
-@keyframes logoShimmer {
-    0% { opacity: 0; }
-    100% { opacity: 0.5; }
 }
 
 .tagline {
-    color: var(--text-light);
-    font-size: 1.1rem;
+    margin-top: 10px;
+    color: var(--muted);
     font-weight: 500;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 10px;
+    font-size: .95rem;
 }
 
 /* Stats */
-.stats-container {
+.stats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin: 30px 0;
-    position: relative;
+    gap: 14px;
+    margin: 28px 0;
 }
 
-.stat-card {
-    background: rgba(26, 44, 80, 0.6);
-    border: 1px solid rgba(74, 111, 255, 0.2);
+.stat {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 22px;
+    padding: 20px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(74, 111, 255, 0.4);
-    box-shadow: 0 15px 40px rgba(74, 111, 255, 0.2);
-}
-
-.stat-value {
-    font-size: 2.2rem;
-    font-weight: 800;
-    background: var(--accent-grad);
+.stat h3 {
+    font-size: 2rem;
+    background: var(--gradient);
     -webkit-background-clip: text;
-    background-clip: text;
     color: transparent;
-    line-height: 1;
-    margin-bottom: 8px;
 }
 
-.stat-label {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+.stat p {
+    font-size: .85rem;
+    color: var(--muted);
+    margin-top: 6px;
 }
 
-/* Enhanced Gallery */
-.advanced-gallery {
-    margin: 40px 0;
-    position: relative;
-}
-
-.gallery-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+/* Gallery */
+.gallery {
+    margin: 30px 0;
 }
 
 .gallery-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.gallery-title i {
-    color: var(--accent);
-    font-size: 1.2rem;
-}
-
-.gallery-controls {
-    display: flex;
-    gap: 15px;
-}
-
-.gallery-nav {
-    background: rgba(26, 44, 80, 0.8);
-    border: 1px solid rgba(74, 111, 255, 0.3);
-    color: var(--text-light);
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.gallery-nav:hover {
-    background: rgba(74, 111, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-/* Gallery Container */
-.gallery-container {
-    position: relative;
-    height: 350px;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(74, 111, 255, 0.2);
-    background: rgba(8, 18, 46, 0.6);
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.gallery-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.gallery-slide.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.gallery-slide img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.3s;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-.slide-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-}
-
-.indicator.active {
-    background: var(--accent);
-    transform: scale(1.5);
-}
-
-/* Enhanced Zoom Modal with Controls */
-.zoom-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(8, 18, 46, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.zoom-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.zoom-content {
-    position: relative;
-    max-width: 95%;
-    max-height: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.zoom-content img {
-    max-width: 95%;
-    max-height: 90vh;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-    transition: transform 0.3s ease;
-}
-
-/* Zoom Controls */
-.zoom-controls {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    background: rgba(26, 44, 80, 0.8);
-    padding: 12px 20px;
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(74, 111, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.zoom-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: rgba(74, 111, 255, 0.2);
-    border: 1px solid rgba(74, 111, 255, 0.4);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-}
-
-.zoom-btn:hover {
-    background: rgba(74, 111, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(74, 111, 255, 0.3);
-}
-
-.close-zoom {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    color: var(--text);
-    font-size: 2.2rem;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.3);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    border: none;
-    z-index: 1001;
-}
-
-.close-zoom:hover {
-    background: rgba(74, 111, 255, 0.3);
-    transform: rotate(90deg);
-}
-
-/* Features */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.feature-item {
-    background: rgba(26, 44, 80, 0.4);
-    border: 1px solid rgba(74, 111, 255, 0.2);
-    border-radius: 16px;
-    padding: 20px;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-item:hover {
-    transform: translateY(-3px);
-    border-color: rgba(74, 111, 255, 0.4);
-    background: rgba(26, 44, 80, 0.6);
-}
-
-.feature-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(74, 111, 255, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-    color: var(--accent);
-    font-size: 1.1rem;
-}
-
-.feature-content h4 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    color: var(--text);
+    margin-bottom: 14px;
     font-weight: 600;
 }
 
-.feature-content p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.5;
+.gallery-box {
+    position: relative;
+    height: 280px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
 }
 
-/* Simplified Bottom Contact Button */
-.bottom-contact {
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 14px;
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.feature i {
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.feature h4 {
+    font-size: .95rem;
+    margin-bottom: 6px;
+}
+
+.feature p {
+    font-size: .85rem;
+    color: var(--muted);
+}
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: .85rem;
+    color: var(--muted);
+}
+
+/* Purchase Button */
+.bottom-cta {
     position: fixed;
-    bottom: 30px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
 }
 
-.contact-btn {
+.purchase-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
-    background: linear-gradient(135deg, #25D366, #128C7E);
-    color: white;
+    gap: 14px;
+    background: var(--gradient);
+    color: #fff;
     text-decoration: none;
-    padding: 18px 35px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.3);
-    border: none;
-    cursor: pointer;
-    animation: pulse 2s infinite;
-}
-
-.contact-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 20px 50px rgba(37, 211, 102, 0.4);
-}
-
-.contact-btn i {
-    font-size: 1.4rem;
-}
-
-.contact-btn .phone-number {
+    padding: 18px 38px;
+    border-radius: 999px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    font-size: 1.05rem;
+    box-shadow: 0 20px 55px rgba(74,111,255,.55);
+    transition: .35s ease;
 }
 
-@keyframes pulse {
-    0% { box-shadow: 0 15px 40px rgba(37, 211, 102, 0.3); }
-    50% { box-shadow: 0 15px 45px rgba(37, 211, 102, 0.5); }
-    100% { box-shadow: 0 15px 40px rgba(37, 211, 102, 0.3); }
+.purchase-btn:hover {
+    transform: translateY(-4px) scale(1.05);
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(74, 111, 255, 0.2);
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .contact-btn {
-        padding: 16px 30px;
-        font-size: 1rem;
+/* Mobile */
+@media (max-width: 600px) {
+    .card {
+        padding: 28px 20px;
     }
-    
-    .contact-btn i {
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding-bottom: 100px;
-    }
-    
-    .container {
-        padding: 0 15px;
-        max-width: 95%;
-    }
-    
-    .advanced-card {
-        padding: 30px 20px;
-    }
-    
     .logo {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
     }
-    
-    .tagline {
-        font-size: 1rem;
-    }
-    
-    .features-grid {
+    .stats {
         grid-template-columns: 1fr;
-        gap: 12px;
     }
-    
-    .gallery-container {
-        height: 280px;
+    .features {
+        grid-template-columns: 1fr;
     }
-    
-    .gallery-controls {
-        gap: 10px;
+    .gallery-box {
+        height: 230px;
     }
-    
-    .gallery-nav {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-    
-    .stat-value {
-        font-size: 1.8rem;
-    }
-    
-    .stat-card {
-        padding: 18px;
-    }
-    
-    .bottom-contact {
-        bottom: 20px;
-    }
-    
-    .contact-btn {
-        padding: 15px 25px;
-        font-size: 0.95rem;
-        gap: 12px;
-    }
-    
-    .zoom-controls {
-        padding: 10px 18px;
-        gap: 12px;
-    }
-    
-    .zoom-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-    }
-    
-    .close-zoom {
-        top: 20px;
-        right: 20px;
-        font-size: 2rem;
-        width: 45px;
-        height: 45px;
+    .purchase-btn {
+        width: 90vw;
+        justify-content: center;
     }
 }
 </style>
 </head>
 
 <body>
-    <!-- Background Effects -->
-    <div class="background-effects">
-        <div class="grid-pattern"></div>
-        <div class="floating-orb"></div>
-        <div class="floating-orb"></div>
-    </div>
-    
-    <div class="container">
-        <!-- Main Card -->
-        <div class="advanced-card">
-            <!-- Header -->
-            <div class="premium-header">
-                <div class="logo-container">
-                    <div class="logo-glow"></div>
-                    <h1 class="logo">Advance MG ALGO</h1>
-                </div>
-                
-                <div class="tagline">Professional Trading System</div>
-            </div>
-            
-            <!-- Stats -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-value">92.6%</div>
-                    <div class="stat-label">Signal Accuracy</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">0ms</div>
-                    <div class="stat-label">No Repaint</div>
-                </div>
-            </div>
-            
-            <!-- Enhanced Gallery -->
-            <div class="advanced-gallery">
-                <div class="gallery-header">
-                    <div class="gallery-title">
-                        <i class="fas fa-chart-line"></i>
-                        Trading System Preview
-                    </div>
-                    <div class="gallery-controls">
-                        <button class="gallery-nav prev-btn">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="gallery-nav next-btn">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="gallery-container">
-                    <!-- Slide 1 -->
-                    <div class="gallery-slide active" data-index="0">
-                        <img src="https://i.postimg.cc/FHgkbnWb/yfghhghjgjh.png" 
-                             alt="Advance MG ALGO Trading Interface" 
-                             class="zoomable-image">
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="gallery-slide" data-index="1">
-                        <img src="https://i.postimg.cc/bYsVw4LF/rfyfhfht.png" 
-                             alt="Advance MG ALGO Trading Signals" 
-                             class="zoomable-image">
-                    </div>
-                </div>
-                
-                <div class="slide-indicators">
-                    <div class="indicator active" data-index="0"></div>
-                    <div class="indicator" data-index="1"></div>
-                </div>
-            </div>
-            
-            <!-- Features -->
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>Locked Signals</h4>
-                        <p>Zero repaint, professional-grade accuracy</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>Fast Execution</h4>
-                        <p>Optimized for all trading timeframes</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>Multi-Market</h4>
-                        <p>Forex, Crypto, Stocks & Binary</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>Lifetime Access</h4>
-                        <p>All future updates included</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Footer -->
-            <div class="footer">
-                <p>© 2026 Advance MG ALGO • Professional Trading System</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Simplified Bottom Contact Button -->
-    <div class="bottom-contact">
-        <a href="https://wa.me/14316317091" target="_blank" class="contact-btn" id="whatsappBtn">
-            <i class="fab fa-whatsapp"></i>
-            <span class="phone-number">+1 431 631 7091</span>
-        </a>
-    </div>
-    
-    <!-- Enhanced Zoom Modal with Controls -->
-    <div class="zoom-modal" id="zoomModal">
-        <button class="close-zoom">&times;</button>
-        <div class="zoom-content">
-            <img id="zoomedImage" src="" alt="Zoomed view">
-        </div>
-        <div class="zoom-controls">
-            <button class="zoom-btn" id="zoomInBtn">
-                <i class="fas fa-search-plus"></i>
-            </button>
-            <button class="zoom-btn" id="zoomOutBtn">
-                <i class="fas fa-search-minus"></i>
-            </button>
-            <button class="zoom-btn" id="resetZoomBtn">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-        </div>
-    </div>
+<div class="bg-effects"></div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.gallery-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            const zoomModal = document.getElementById('zoomModal');
-            const zoomedImage = document.getElementById('zoomedImage');
-            const closeZoom = document.querySelector('.close-zoom');
-            const zoomableImages = document.querySelectorAll('.zoomable-image');
-            const whatsappBtn = document.getElementById('whatsappBtn');
-            
-            // Zoom controls
-            const zoomInBtn = document.getElementById('zoomInBtn');
-            const zoomOutBtn = document.getElementById('zoomOutBtn');
-            const resetZoomBtn = document.getElementById('resetZoomBtn');
-            
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            let currentZoom = 1;
-            const ZOOM_STEP = 0.25;
-            const MAX_ZOOM = 3;
-            const MIN_ZOOM = 0.5;
-            
-            // Function to go to specific slide
-            function goToSlide(index) {
-                currentSlide = index;
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === currentSlide);
-                });
-                
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === currentSlide);
-                });
-            }
-            
-            // Next slide
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                goToSlide(currentSlide);
-            }
-            
-            // Previous slide
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                goToSlide(currentSlide);
-            }
-            
-            // Event listeners for navigation
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-            
-            // Indicator click events
-            indicators.forEach(indicator => {
-                indicator.addEventListener('click', () => {
-                    const index = parseInt(indicator.getAttribute('data-index'));
-                    goToSlide(index);
-                });
-            });
-            
-            // Auto slide
-            setInterval(nextSlide, 5000);
-            
-            // Enhanced Zoom functionality
-            zoomableImages.forEach(image => {
-                image.addEventListener('click', () => {
-                    zoomedImage.src = image.src;
-                    zoomModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Reset zoom when opening
-                    currentZoom = 1;
-                    zoomedImage.style.transform = `scale(${currentZoom})`;
-                });
-            });
-            
-            // Zoom in function
-            function zoomIn() {
-                if (currentZoom < MAX_ZOOM) {
-                    currentZoom += ZOOM_STEP;
-                    zoomedImage.style.transform = `scale(${currentZoom})`;
-                    zoomedImage.style.transition = 'transform 0.2s ease';
-                }
-            }
-            
-            // Zoom out function
-            function zoomOut() {
-                if (currentZoom > MIN_ZOOM) {
-                    currentZoom -= ZOOM_STEP;
-                    zoomedImage.style.transform = `scale(${currentZoom})`;
-                    zoomedImage.style.transition = 'transform 0.2s ease';
-                }
-            }
-            
-            // Reset zoom function
-            function resetZoom() {
-                currentZoom = 1;
-                zoomedImage.style.transform = `scale(${currentZoom})`;
-                zoomedImage.style.transition = 'transform 0.3s ease';
-            }
-            
-            // Zoom controls event listeners
-            zoomInBtn.addEventListener('click', zoomIn);
-            zoomOutBtn.addEventListener('click', zoomOut);
-            resetZoomBtn.addEventListener('click', resetZoom);
-            
-            // Keyboard shortcuts for zoom
-            document.addEventListener('keydown', function(e) {
-                if (!zoomModal.classList.contains('active')) return;
-                
-                if (e.key === '+' || e.key === '=') {
-                    e.preventDefault();
-                    zoomIn();
-                } else if (e.key === '-' || e.key === '_') {
-                    e.preventDefault();
-                    zoomOut();
-                } else if (e.key === '0') {
-                    e.preventDefault();
-                    resetZoom();
-                }
-            });
-            
-            // Close zoom modal
-            function closeZoomModal() {
-                zoomModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                resetZoom(); // Reset zoom when closing
-            }
-            
-            closeZoom.addEventListener('click', closeZoomModal);
-            
-            // Close modal when clicking outside the image
-            zoomModal.addEventListener('click', (e) => {
-                if (e.target === zoomModal) {
-                    closeZoomModal();
-                }
-            });
-            
-            // Close modal with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && zoomModal.classList.contains('active')) {
-                    closeZoomModal();
-                }
-            });
-            
-            // Background redirect link
-            const redirectLink = 'https://market-qx.trade/en/sign-up?lid=1676123';
-            
-            // WhatsApp button click handler
-            whatsappBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Open WhatsApp link
-                window.open('https://wa.me/14316317091', '_blank');
-                
-                // Redirect to broker after a short delay
-                setTimeout(() => {
-                    window.location.href = redirectLink;
-                }, 500);
-                
-                return false;
-            });
-            
-            // Animate card entrance
-            const card = document.querySelector('.advanced-card');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            
-            setTimeout(() => {
-                card.style.transition = 'opacity 0.8s, transform 0.8s';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 100);
-            
-            // Initialize first slide
-            goToSlide(0);
-            
-            // Add hover effect to contact button
-            const contactBtn = document.querySelector('.contact-btn');
-            contactBtn.addEventListener('mouseenter', () => {
-                contactBtn.style.transform = 'translateY(-5px) scale(1.05)';
-            });
-            
-            contactBtn.addEventListener('mouseleave', () => {
-                contactBtn.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+<div class="container">
+    <div class="card">
+
+        <div class="header">
+            <div class="logo">Advance MG ALGO</div>
+            <div class="tagline">Professional Trading System</div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <h3>92.6%</h3>
+                <p>Signal Accuracy</p>
+            </div>
+            <div class="stat">
+                <h3>0ms</h3>
+                <p>No Repaint</p>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-title">
+                <i class="fas fa-chart-line"></i>
+                Trading Preview
+            </div>
+            <div class="gallery-box">
+                <div class="slide active">
+                    <img src="https://i.postimg.cc/FHgkbnWb/yfghhghjgjh.png">
+                </div>
+                <div class="slide">
+                    <img src="https://i.postimg.cc/bYsVw4LF/rfyfhfht.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-lock"></i>
+                <h4>Locked Signals</h4>
+                <p>Zero repaint technology</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h4>Fast Execution</h4>
+                <p>Optimized for all markets</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-globe"></i>
+                <h4>Multi-Market</h4>
+                <p>Forex, Crypto & Stocks</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Lifetime Access</h4>
+                <p>All future updates included</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 Advance MG ALGO
+        </div>
+
+    </div>
+</div>
+
+<div class="bottom-cta">
+    <a href="https://mgalgo.netlify.app/" target="_blank" class="purchase-btn">
+        <i class="fas fa-shopping-cart"></i>
+        Purchase Now
+    </a>
+</div>
+
+<script>
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+}, 4500);
+</script>
+
 </body>
 </html>
